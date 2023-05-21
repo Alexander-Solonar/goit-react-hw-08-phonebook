@@ -1,0 +1,14 @@
+.container {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.loader {
+  position: absolute;
+
+  font-weight: 700;
+}
+
+.error {
+  font-weight: 700;
+}
