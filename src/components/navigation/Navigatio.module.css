@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  column-gap: 30px;
+}
+
+.link {
+  color: black;
+}
+
+.active {
+  color: tomato;
+}

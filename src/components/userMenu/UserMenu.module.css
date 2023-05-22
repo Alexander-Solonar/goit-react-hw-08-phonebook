@@ -1,0 +1,13 @@
+.box {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.userEmail {
+  margin: 0;
+}
+
+.icon {
+  border-radius: 50px;
+}
