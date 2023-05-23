@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
-import Home from 'pages/home/Home';
-import Contacts from '../pages/contacts';
-import Register from 'pages/register/Register';
-import Login from 'pages/login/Login';
+const Home = lazy(() => import('pages/home/Home'));
+const Contacts = lazy(() => import('pages/contacts'));
+const Register = lazy(() => import('pages/register/Register'));
+const Login = lazy(() => import('pages/login/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export const App = () => {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );

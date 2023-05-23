@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,26 +29,9 @@ const RegisterForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(register({ name, email, password }));
 
-    // const newContact = {
-    //   id: nanoid(),
-    //   name,
-    //   number,
-    // };
-    // const normalizedName = newContact.name.toLowerCase();
-    // const isName = items.some(
-    //   ({ name }) => name.toLowerCase() === normalizedName
-    // );
-    // const isNumber = items.some(({ number }) => number === newContact.number);
-    // if (isName) {
-    //   alert(`${newContact.name} is already in contacts.`);
-    //   return;
-    // }
-    // if (isNumber) {
-    //   alert(`${newContact.number} is already in contacts.`);
-    //   return;
-    // }
-    // dispatch(addContact(newContact));
+    setName('');
     setEmail('');
     setPassword('');
   };
@@ -91,7 +77,7 @@ const RegisterForm = () => {
           />
         </label>
         <button className={css.button} type="submit">
-          Log in
+          Submit
         </button>
       </form>
     </div>
