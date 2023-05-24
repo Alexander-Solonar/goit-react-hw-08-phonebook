@@ -1,30 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOut, login, register } from './operations';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
+import { logOut, login, refresh, register } from './operations';
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  isLoggenIn: false,
+  isLoggedIn: false,
+  isRefreshing: false,
+};
+
+const handleRefresh = (state, action) => {
+  state.user = { ...action.payload };
+  state.isLoggedIn = true;
+  state.isRefreshing = false;
+};
+
+const handleIsRefreshing = state => {
+  state.isRefreshing = true;
+};
+
+const handleIsNotRefreshing = state => {
+  state.isRefreshing = false;
 };
 
 const handleRegister = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
-  state.isLoggenIn = true;
+  state.isLoggedIn = true;
 };
 
 const handleLogin = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
-  state.isLoggenIn = true;
+  state.isLoggedIn = true;
 };
 
-const handleLogOut = (state, action) => {
+const handleLogOut = state => {
   state.user = { name: null, email: null };
   state.token = null;
-  state.isLoggenIn = false;
+  state.isLoggedIn = false;
 };
 
 const authSlice = createSlice({
@@ -32,15 +45,13 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
+      .addCase(refresh.pending, handleIsRefreshing)
+      .addCase(refresh.fulfilled, handleRefresh)
+      .addCase(refresh.rejected, handleIsNotRefreshing)
       .addCase(register.fulfilled, handleRegister)
       .addCase(login.fulfilled, handleLogin)
       .addCase(logOut.fulfilled, handleLogOut);
   },
 });
 
-const persistConfig = {
-  key: 'contact',
-  storage,
-  whitelist: ['token'],
-};
-export const authReducer = persistReducer(persistConfig, authSlice.reducer);
+export const authReducer = authSlice.reducer;
