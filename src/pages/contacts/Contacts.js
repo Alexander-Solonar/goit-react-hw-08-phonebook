@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import ContactForm from '../../components/contactForm';
 import ContactList from '../../components/contactList';
 import Filter from '../../components/filter';
-import css from './Contacts.module.css';
 import { fetchContacts } from 'redux/operations';
+import css from './Contacts.module.css';
 
 const Contacts = () => {
   const { items, isLoading, error } = useSelector(state => state.contacts);

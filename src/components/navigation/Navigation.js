@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import css from './Navigatio.module.css';
-import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);

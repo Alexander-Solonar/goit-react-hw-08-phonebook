@@ -1,13 +1,13 @@
 .box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: flex-end;
   column-gap: 15px;
   row-gap: 5px;
   align-items: center;
 }
 
-.userEmail {
+.userName {
   margin: 0;
 }
 
