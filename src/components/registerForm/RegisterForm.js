@@ -77,7 +77,7 @@ const RegisterForm = () => {
           />
         </label>
         <button className={css.button} type="submit">
-          Submit
+          Register
         </button>
       </form>
     </div>
